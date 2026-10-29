@@ -42,4 +42,44 @@ body {
   width: 100vw;
   height: 100vh;
   background: #eadeca;
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.tile {
+  width: 70px;
+  height: 70px;
+  background: #d4c4a8;
+  border: 2px solid #8b5a2b;
+  cursor: pointer;
+}
+
+.box {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  width: 250px;
+  height: 180px;
+  background: #fdfaf2;
+  border: 2px solid #8b5a2b;
+}
+
+.head {
+  height: 25px;
+  background: #8b5a2b;
+  cursor: grab;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  padding-right: 5px;
+}
+
+.btn {
+  width: 14px;
+  height: 14px;
+  background: #fdfaf2;
+  cursor: pointer;
 }

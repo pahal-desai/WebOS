@@ -16,3 +16,69 @@ function run() {
 }
 
 timer = setInterval(run, 30)
+
+drag = null
+ox = 0
+oy = 0
+
+function pop(n) {
+  win = document.createElement('div')
+  win.className = 'box'
+  win.style.left = (60 * n) + 'px'
+  win.style.top = (60 * n) + 'px'
+  
+  bar = document.createElement('div')
+  bar.className = 'head'
+  bar.onmousedown = function(e) {
+    if (e.target != bar) return
+    drag = win
+    ox = e.clientX - win.offsetLeft
+    oy = e.clientY - win.offsetTop
+  }
+  
+  minbtn = document.createElement('div')
+  minbtn.className = 'btn'
+  minbtn.onclick = function() {
+    win.style.display = 'none'
+  }
+
+  maxbtn = document.createElement('div')
+  maxbtn.className = 'btn'
+  maxbtn.onclick = function() {
+    if (win.style.width == '100%') {
+      win.style.width = '250px'
+      win.style.height = '180px'
+      win.style.left = (60 * n) + 'px'
+      win.style.top = (60 * n) + 'px'
+    } else {
+      win.style.width = '100%'
+      win.style.height = '100%'
+      win.style.left = '0px'
+      win.style.top = '0px'
+    }
+  }
+
+  clsbtn = document.createElement('div')
+  clsbtn.className = 'btn'
+  clsbtn.onclick = function() {
+    win.remove()
+  }
+
+  bar.appendChild(minbtn)
+  bar.appendChild(maxbtn)
+  bar.appendChild(clsbtn)
+
+  win.appendChild(bar)
+  document.body.appendChild(win)
+}
+
+document.onmousemove = function(e) {
+  if (drag) {
+    drag.style.left = (e.clientX - ox) + 'px'
+    drag.style.top = (e.clientY - oy) + 'px'
+  }
+}
+
+document.onmouseup = function() {
+  drag = null
+}
