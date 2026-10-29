@@ -3,7 +3,7 @@ body {
   font-family: serif;
   background: #f5eedb;
 }
-
+/* I hate when people look into my code. Just enjoy the os. */
 #boot {
   position: fixed;
   top: 0;
@@ -82,4 +82,8 @@ body {
   height: 14px;
   background: #fdfaf2;
   cursor: pointer;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  user-select: none;
 }

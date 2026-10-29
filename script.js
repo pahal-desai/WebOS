@@ -16,7 +16,7 @@ function run() {
 }
 
 timer = setInterval(run, 30)
-
+//you looking into the code makes me feel uncomfortable.
 drag = null
 ox = 0
 oy = 0
@@ -38,12 +38,14 @@ function pop(n) {
   
   minbtn = document.createElement('div')
   minbtn.className = 'btn'
+  minbtn.innerText = '_'
   minbtn.onclick = function() {
     win.style.display = 'none'
   }
 
   maxbtn = document.createElement('div')
   maxbtn.className = 'btn'
+  maxbtn.innerText = '□'
   maxbtn.onclick = function() {
     if (win.style.width == '100%') {
       win.style.width = '250px'
@@ -60,10 +62,11 @@ function pop(n) {
 
   clsbtn = document.createElement('div')
   clsbtn.className = 'btn'
+  clsbtn.innerText = '×'
   clsbtn.onclick = function() {
     win.remove()
   }
-
+//still looking into my code?
   bar.appendChild(minbtn)
   bar.appendChild(maxbtn)
   bar.appendChild(clsbtn)
