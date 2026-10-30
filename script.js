@@ -33,7 +33,7 @@ function easecurve(x) {
   return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x+2, 3)/2
 }
 
-function grabwin(el) {
+function grabwin(el, n) {
   r = el.getBoundingClientRect()
   c = document.createElement('canvas')
   dpr = window.devicePixelRatio || 1
@@ -59,6 +59,21 @@ function grabwin(el) {
   g.fillText('×', r.width-12, 13)
   g.fillText('□', r.width-31, 13)
   g.fillText('_', r.width-50, 13)
+
+  if (n == 1) {
+    digi = el.querySelector('.clockdigi')
+    dstr = digi ? digi.innerText : ''
+    dat = el.querySelector('.clockdate')
+    datstr = dat ? dat.innerText : ''
+    g.fillStyle = '#2b1810'
+    g.font = 'bold 30px serif'
+    g.textAlign = 'center'
+    g.textBaseline = 'middle'
+    g.fillText(dstr, r.width / 2, 25 + (r.height - 25) / 2 - 10)
+    g.font = '14px serif'
+    g.fillText(datstr, r.width / 2, 25 + (r.height - 25) / 2 + 20)
+  }
+
   return c
 }
 
@@ -71,7 +86,7 @@ function rungenie(n, shrink, cb) {
   thetile = items[n-1].querySelector('.tile')
   ir = thetile.getBoundingClientRect()
 
-  pic = grabwin(el)
+  pic = grabwin(el, n)
   el.style.visibility = 'hidden'
 
   cvs = document.createElement('canvas')
@@ -221,6 +236,37 @@ function pop(n) {
   hd.appendChild(closebtn)
 
   ww.appendChild(hd)
+
+  if (n == 1) {
+    bdy = document.createElement('div')
+    bdy.className = 'clockbody'
+    
+    dig = document.createElement('div')
+    dig.className = 'clockdigi'
+    
+    dt = document.createElement('div')
+    dt.className = 'clockdate'
+    
+    bdy.appendChild(dig)
+    bdy.appendChild(dt)
+    ww.appendChild(bdy)
+
+    function updateclockapp() {
+      now = new Date()
+      dig.innerText = now.toLocaleTimeString()
+      dt.innerText = now.toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })
+    }
+
+    updateclockapp()
+    clktimer = setInterval(updateclockapp, 1000)
+
+    oldclose = closebtn.onclick
+    closebtn.onclick = function() {
+      clearInterval(clktimer)
+      oldclose()
+    }
+  }
+
   document.body.appendChild(ww)
 }
 
@@ -247,3 +293,22 @@ for (i = 0; i < items.length; i++) {
     dock.style.setProperty('--dock-offset-right', off + 'px')
   }
 }
+
+hrhand = document.getElementById('hrhand')
+minhand = document.getElementById('minhand')
+sechand = document.getElementById('sechand')
+
+function tickclock() {
+  d = new Date()
+  s = d.getSeconds()
+  m = d.getMinutes() + s / 60
+  h = (d.getHours() % 12) + m / 60
+
+  if (sechand) sechand.style.transform = 'rotate(' + (s * 6) + 'deg)'
+  if (minhand) minhand.style.transform = 'rotate(' + (m * 6) + 'deg)'
+  if (hrhand) hrhand.style.transform = 'rotate(' + (h * 30) + 'deg)'
+}
+
+tickclock()
+setInterval(tickclock, 1000)
+// this marks the 100*pi lines of the code lmao
