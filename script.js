@@ -20,6 +20,7 @@ timer = setInterval(run, 30)
 drag = null
 ox = 0
 oy = 0
+topz = 20
 
 wins = {}
 minned = {}
@@ -224,17 +225,29 @@ function pop(n) {
   if (wins[n] && minned[n]) {
     if (busy[n]) return
     rungenie(n, false, function() {
+      topz = topz + 1
+      wins[n].style.zIndex = topz
       wins[n].style.visibility = 'visible'
       delete minned[n]
     })
     return
   }
 
-  if (wins[n]) return
+  if (wins[n]) {
+    topz = topz + 1
+    wins[n].style.zIndex = topz
+    return
+  }
 
   ww = document.createElement('div')
   wins[n] = ww
   ww.className = 'box'
+  topz = topz + 1
+  ww.style.zIndex = topz
+  ww.onmousedown = function() {
+    topz = topz + 1
+    this.style.zIndex = topz
+  }
   ww.style.left = (60*n) + 'px'
   ww.style.top = (60*n) + 'px'
   if (n == 4) {
@@ -249,10 +262,12 @@ function pop(n) {
   hd = document.createElement('div')
   hd.className = 'head'
   hd.onmousedown = function(e) {
-    if (e.target != hd) return
-    drag = wins[n]
-    ox = e.clientX - wins[n].offsetLeft
-    oy = e.clientY - wins[n].offsetTop
+    if (e.target != this) return
+    topz = topz + 1
+    drag = this.parentNode
+    drag.style.zIndex = topz
+    ox = e.clientX - drag.offsetLeft
+    oy = e.clientY - drag.offsetTop
   }
 
   mb = document.createElement('div')
