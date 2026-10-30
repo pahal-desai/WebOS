@@ -285,3 +285,214 @@ body {
   margin-top: 8px;
   opacity: 0.8;
 }
+
+.notewin {
+  display: flex;
+  height: calc(100% - 25px);
+}
+
+.noteside {
+  width: 120px;
+  background: #ebdcc7;
+  border-right: 1px solid #8b5a2b;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.notenew {
+  padding: 6px 10px;
+  background: #8b5a2b;
+  color: #fdfaf2;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  font-family: serif;
+}
+
+.notelist {
+  flex: 1;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.noteitem {
+  padding: 6px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #d8c8af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2b1810;
+  user-select: none;
+}
+
+.noteitem.noteactive {
+  background: #fdfaf2;
+  font-weight: bold;
+}
+
+.notedel {
+  font-size: 13px;
+  color: #8b5a2b;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.notemain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.notetool {
+  height: 28px;
+  background: #ebdcc7;
+  border-bottom: 1px solid #8b5a2b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+}
+
+.toolbtn {
+  width: 22px;
+  height: 20px;
+  background: #fdfaf2;
+  border: 1px solid #8b5a2b;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #2b1810;
+  user-select: none;
+}
+
+.toolbtn:hover {
+  background: #d4c4a8;
+}
+
+.notepaper {
+  flex: 1;
+  padding: 8px 14px 8px 16px;
+  background-color: #fdfaf2;
+  background-image: repeating-linear-gradient(transparent, transparent 27px, #dfd0bb 28px);
+  line-height: 28px;
+  font-size: 15px;
+  font-family: serif;
+  color: #2b1810;
+  border-left: 2px solid #d49a88;
+  outline: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.todowin {
+  height: calc(100% - 25px);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #fdfaf2;
+}
+
+.todobar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.todoin {
+  flex: 1;
+  padding: 5px 8px;
+  border: 1px solid #8b5a2b;
+  background: #fffdf9;
+  font-family: serif;
+  font-size: 13px;
+  color: #2b1810;
+  outline: none;
+}
+
+.todobtn {
+  padding: 5px 12px;
+  background: #8b5a2b;
+  color: #fdfaf2;
+  border: none;
+  cursor: pointer;
+  font-family: serif;
+  font-size: 14px;
+  user-select: none;
+}
+
+.todolist {
+  flex: 1;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todoitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border-bottom: 1px dashed #d8c8af;
+  font-size: 13px;
+  color: #2b1810;
+}
+
+.todocheck {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #8b5a2b;
+  background: #fdfaf2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  user-select: none;
+}
+
+.todotext {
+  flex: 1;
+  word-break: break-word;
+}
+
+.tododone {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.tododel {
+  cursor: pointer;
+  color: #8b5a2b;
+  font-size: 14px;
+  user-select: none;
+  padding: 0 4px;
+}
+
+.soon {
+  height: calc(100% - 25px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2b1810;
+  font-size: 15px;
+  font-style: italic;
+  font-family: serif;
+  user-select: none;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
