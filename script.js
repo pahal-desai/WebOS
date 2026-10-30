@@ -311,6 +311,7 @@ function pop(n) {
     bdy.appendChild(dt)
     ww.appendChild(bdy)
 
+// this is the (100*pi)th line of the code
     function updateclockapp() {
       now = new Date()
       dig.innerText = now.toLocaleTimeString()
@@ -587,4 +588,3 @@ function tickclock() {
 
 tickclock()
 setInterval(tickclock, 1000)
-// this marks the 100*pi lines of the code lmao
