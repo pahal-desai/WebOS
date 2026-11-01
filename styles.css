@@ -2,14 +2,12 @@ body {
   margin: 0;
   font-family: serif;
   background: #f5eedb;
+  user-select: none;
 }
 /* I hate when people look into my code. Just enjoy the os. */
 #boot {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: #2b1810;
   display: flex;
   justify-content: center;
@@ -29,8 +27,7 @@ body {
   width: 100%;
   height: 16px;
   border: 2px solid #8b5a2b;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin: 15px 0 10px;
 }
 
 #load {
@@ -79,35 +76,16 @@ body {
   border-radius: 2px;
 }
 
-#hrhand {
-  width: 3px;
-  height: 24px;
-  margin-left: -1.5px;
-  background: #2b1810;
-}
-
-#minhand {
-  width: 2px;
-  height: 33px;
-  margin-left: -1px;
-  background: #2b1810;
-}
-
-#sechand {
-  width: 1px;
-  height: 36px;
-  margin-left: -0.5px;
-  background: #8b5a2b;
-}
-
+#hrhand { width: 3px; height: 24px; margin-left: -1.5px; background: #2b1810; }
+#minhand { width: 2px; height: 33px; margin-left: -1px; background: #2b1810; }
+#sechand { width: 1px; height: 36px; margin-left: -0.5px; background: #8b5a2b; }
 #clockpin {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 7px;
   height: 7px;
-  margin-top: -3.5px;
-  margin-left: -3.5px;
+  margin: -3.5px 0 0 -3.5px;
   background: #8b5a2b;
   border-radius: 50%;
 }
@@ -128,9 +106,8 @@ body {
 
 .label {
   font-size: 13px;
-  color: #ffffff;
+  color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  user-select: none;
 }
 
 #dock {
@@ -170,30 +147,28 @@ body {
   margin-top: -22px;
 }
 
-/* right side */
 .dockitem:hover + .dockitem {
   width: calc(53px + var(--dock-offset-right, 0px));
   height: calc(53px + var(--dock-offset-right, 0px));
-  margin-top: calc(-13px + var(--dock-offset-right, 0px) * -1);
+  margin-top: calc(-13px - var(--dock-offset-right, 0px));
 }
 
 .dockitem:hover + .dockitem + .dockitem {
   width: calc(46px + var(--dock-offset-right, 0px));
   height: calc(46px + var(--dock-offset-right, 0px));
-  margin-top: calc(-6px + var(--dock-offset-right, 0px) * -1);
+  margin-top: calc(-6px - var(--dock-offset-right, 0px));
 }
 
-/* left side */
 .dockitem:has(+ .dockitem:hover) {
   width: calc(53px + var(--dock-offset-left, 0px));
   height: calc(53px + var(--dock-offset-left, 0px));
-  margin-top: calc(-13px + var(--dock-offset-left, 0px) * -1);
+  margin-top: calc(-13px - var(--dock-offset-left, 0px));
 }
 
 .dockitem:has(+ .dockitem + .dockitem:hover) {
   width: calc(46px + var(--dock-offset-left, 0px));
   height: calc(46px + var(--dock-offset-left, 0px));
-  margin-top: calc(-6px + var(--dock-offset-left, 0px) * -1);
+  margin-top: calc(-6px - var(--dock-offset-left, 0px));
 }
 
 .tip {
@@ -202,7 +177,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
-  transition: ease-in opacity 100ms;
+  transition: opacity 100ms ease-in;
   background: #2b1810;
   color: #fdfaf2;
   padding: 4px 8px;
@@ -210,12 +185,9 @@ body {
   font-size: 12px;
   white-space: nowrap;
   pointer-events: none;
-  user-select: none;
 }
 
-.dockitem:hover .tip {
-  opacity: 1;
-}
+.dockitem:hover .tip { opacity: 1; }
 
 .tile {
   width: 50px;
@@ -228,7 +200,6 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 26px;
-  user-select: none;
   filter: sepia(100%) hue-rotate(345deg) saturate(180%) brightness(0.65);
 }
 
@@ -261,17 +232,19 @@ body {
   font-size: 10px;
   line-height: 14px;
   text-align: center;
-  user-select: none;
+}
+
+.clockbody, .notewin, .todowin, .soon {
+  height: calc(100% - 25px);
+  box-sizing: border-box;
 }
 
 .clockbody {
-  height: calc(100% - 25px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #2b1810;
-  user-select: none;
 }
 
 .clockdigi {
@@ -286,10 +259,7 @@ body {
   opacity: 0.8;
 }
 
-.notewin {
-  display: flex;
-  height: calc(100% - 25px);
-}
+.notewin { display: flex; }
 
 .noteside {
   width: 120px;
@@ -297,7 +267,6 @@ body {
   border-right: 1px solid #8b5a2b;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
 .notenew {
@@ -307,11 +276,9 @@ body {
   font-size: 12px;
   text-align: center;
   cursor: pointer;
-  user-select: none;
-  font-family: serif;
 }
 
-.notelist {
+.notelist, .todolist {
   flex: 1;
   overflow-y: auto;
   margin: 0;
@@ -328,7 +295,6 @@ body {
   justify-content: space-between;
   align-items: center;
   color: #2b1810;
-  user-select: none;
 }
 
 .noteitem.noteactive {
@@ -336,18 +302,16 @@ body {
   font-weight: bold;
 }
 
-.notedel {
-  font-size: 13px;
-  color: #8b5a2b;
+.notedel, .tododel {
   cursor: pointer;
-  margin-left: 4px;
+  color: #8b5a2b;
+  padding: 0 3px;
 }
 
 .notemain {
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
   overflow: hidden;
 }
 
@@ -372,14 +336,10 @@ body {
   justify-content: center;
   cursor: pointer;
   font-size: 12px;
-  font-weight: bold;
   color: #2b1810;
-  user-select: none;
 }
 
-.toolbtn:hover {
-  background: #d4c4a8;
-}
+.toolbtn:hover { background: #d4c4a8; }
 
 .notepaper {
   flex: 1;
@@ -388,21 +348,17 @@ body {
   background-image: repeating-linear-gradient(transparent, transparent 27px, #dfd0bb 28px);
   line-height: 28px;
   font-size: 15px;
-  font-family: serif;
   color: #2b1810;
   border-left: 2px solid #d49a88;
   outline: none;
   overflow-y: auto;
-  box-sizing: border-box;
+  user-select: text;
 }
 
 .todowin {
-  height: calc(100% - 25px);
   display: flex;
   flex-direction: column;
   padding: 12px;
-  box-sizing: border-box;
-  background: #fdfaf2;
 }
 
 .todobar {
@@ -416,10 +372,11 @@ body {
   padding: 5px 8px;
   border: 1px solid #8b5a2b;
   background: #fffdf9;
-  font-family: serif;
+  font-family: inherit;
   font-size: 13px;
   color: #2b1810;
   outline: none;
+  user-select: text;
 }
 
 .todobtn {
@@ -428,17 +385,8 @@ body {
   color: #fdfaf2;
   border: none;
   cursor: pointer;
-  font-family: serif;
+  font-family: inherit;
   font-size: 14px;
-  user-select: none;
-}
-
-.todolist {
-  flex: 1;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 .todoitem {
@@ -461,7 +409,6 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  user-select: none;
 }
 
 .todotext {
@@ -474,25 +421,13 @@ body {
   opacity: 0.55;
 }
 
-.tododel {
-  cursor: pointer;
-  color: #8b5a2b;
-  font-size: 14px;
-  user-select: none;
-  padding: 0 4px;
-}
-
 .soon {
-  height: calc(100% - 25px);
   display: flex;
   justify-content: center;
   align-items: center;
   color: #2b1810;
   font-size: 15px;
   font-style: italic;
-  font-family: serif;
-  user-select: none;
   text-align: center;
   padding: 20px;
-  box-sizing: border-box;
 }
